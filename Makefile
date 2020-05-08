@@ -14,7 +14,7 @@ gocd-server:
 	systemctl enable go-server
 	systemctl start go-server
 
-gocd-agent: start-gocd-agent
+gocd-agent:
 	apt install -y go-agent
 	mkdir -pv /var/lib/go-agent/config/
 	chown -Rf go:go /var/lib/go-agent
