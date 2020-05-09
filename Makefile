@@ -3,7 +3,7 @@ all: init
 
 os-init:
 	apt update
-	apt install -y gnupg2 curl procps unzip python3 python3-pip
+	apt install -y gnupg2 curl procps unzip python3 python3-pip rsync dpkg 
 	echo "deb https://download.gocd.org /" | tee /etc/apt/sources.list.d/gocd.list
 	curl https://download.gocd.org/GOCD-GPG-KEY.asc | apt-key add -
 	apt update
@@ -26,13 +26,16 @@ gocd-agent:
 
 gocd: os-init gocd-server gocd-agent
 
-init: reload init-lxd-server
+init: reload init-lxd-server debian-deb
 
 reload:
 	python3 reload.py
 
 init-lxd-server:
 	python3 init-lxd-server.py
+
+debian-deb:
+	python3 debian-deb.py
 
 init-lxd:
 	@echo "init lxd here..."
