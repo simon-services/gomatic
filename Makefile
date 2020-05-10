@@ -26,7 +26,7 @@ gocd-agent:
 
 gocd: os-init gocd-server gocd-agent
 
-init: reload init-lxd-server debian-deb
+init: reload init-lxd-server debian-deb files
 
 reload:
 	python3 reload.py
@@ -39,6 +39,9 @@ debian-deb:
 
 files:
 	python3 minio-deb.py
+	python3 files.py
+	python3 files-frontend.py
+	python3 files-deb.py
 
 init-lxd:
 	@echo "init lxd here..."
