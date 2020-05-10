@@ -37,6 +37,9 @@ init-lxd-server:
 debian-deb:
 	python3 debian-deb.py
 
+files:
+	python3 minio-deb.py
+
 init-lxd:
 	@echo "init lxd here..."
 
