@@ -17,7 +17,7 @@ job_deb.ensure_resource("localhost")
 job_deb.add_task(FetchArtifactTask("files", "service", "build", FetchArtifactFile("bin/files.linux.amd64"), dest="pkg", artifactOrigin="gocd"))
 job_deb.add_task(FetchArtifactTask("files-frontend", "tar", "web", FetchArtifactFile("dist/files-frontend.tar.gz"), dest="pkg", artifactOrigin="gocd"))
 job_deb.add_task(ExecTask(['bash','-c','mv pkg/files.linux.amd64 opt/simon.services/files/bin/files && chmod +x opt/simon.services/files/bin/files']))
-job_deb.add_task(ExecTask(['bash','-c','cd pkg && tar xfvz files-frontend.tar.gz && rm -fv files-frontend.tar.gz && mv files-frontend/* opt/simon.services/files/webroot/ && rm -rf files-frontend && cd ../ && rm -rf pkg']))
+job_deb.add_task(ExecTask(['bash','-c','cd pkg && tar xfvz files-frontend.tar.gz && rm -fv files-frontend.tar.gz && mv files-frontend/* ../opt/simon.services/files/webroot/ && rm -rf files-frontend && cd ../ && rm -rf pkg']))
 job_deb.add_task(ExecTask(['make']))
 job_deb.ensure_artifacts({
     Artifact.get_test_artifact("files-0.0.1-amd64.deb","pkg")
