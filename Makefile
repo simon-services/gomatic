@@ -26,6 +26,14 @@ gocd-agent:
 
 gocd: os-init gocd-server gocd-agent
 
+golang:
+	wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+	tar xfvz go1.14.2.linux-amd64.tar.gz
+	mv go /usr/local/go-1.14.2
+	ln -sf /usr/local/go-1.14.2 /usr/local/go
+	ln -sf /usr/local/go/bin/* /usr/local/bin/
+	rm -fv go1.14.2.linux-amd64.tar.gz
+
 init: reload init-lxd-server debian-deb files
 
 reload:
@@ -37,7 +45,7 @@ init-lxd-server:
 debian-deb:
 	python3 debian-deb.py
 
-files:
+files: golang
 	python3 minio-deb.py
 	python3 files.py
 	python3 files-frontend.py
