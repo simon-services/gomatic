@@ -34,7 +34,7 @@ golang:
 	ln -sf /usr/local/go/bin/* /usr/local/bin/
 	rm -fv go1.14.2.linux-amd64.tar.gz
 
-init: reload init-lxd-server debian-deb files
+init: reload init-lxd-server debian-deb files testing
 
 reload:
 	python3 reload.py
@@ -50,6 +50,9 @@ files:
 	python3 files.py
 	python3 files-frontend.py
 	python3 files-deb.py
+
+testing:
+	python3 testing-deb.py
 
 init-lxd:
 	@echo "init lxd here..."
