@@ -45,7 +45,7 @@ init-lxd-server:
 debian-deb:
 	python3 debian-deb.py
 
-files: golang
+files:
 	python3 minio-deb.py
 	python3 files.py
 	python3 files-frontend.py

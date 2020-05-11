@@ -9,5 +9,7 @@ git clone https://github.com/simon-services/gomatic.git
 cd gomatic
 # initialize gocd system
 make gocd
+# install golang
+make golang
 # import gomatic pipelines into gocd
 make init
