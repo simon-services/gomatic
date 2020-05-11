@@ -3,7 +3,7 @@ all: init
 
 os-init:
 	apt update
-	apt install -y gnupg2 curl procps unzip python3 python3-pip rsync dpkg 
+	apt install -y wget gnupg2 curl procps unzip python3 python3-pip rsync dpkg 
 	echo "deb https://download.gocd.org /" | tee /etc/apt/sources.list.d/gocd.list
 	curl https://download.gocd.org/GOCD-GPG-KEY.asc | apt-key add -
 	apt update
@@ -26,7 +26,15 @@ gocd-agent:
 
 gocd: os-init gocd-server gocd-agent
 
-init: reload init-lxd-server debian-deb
+golang:
+	wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+	tar xfvz go1.14.2.linux-amd64.tar.gz
+	mv go /usr/local/go-1.14.2
+	ln -sf /usr/local/go-1.14.2 /usr/local/go
+	ln -sf /usr/local/go/bin/* /usr/local/bin/
+	rm -fv go1.14.2.linux-amd64.tar.gz
+
+init: reload init-lxd-server debian-deb files
 
 reload:
 	python3 reload.py
@@ -36,6 +44,12 @@ init-lxd-server:
 
 debian-deb:
 	python3 debian-deb.py
+
+files: golang
+	python3 minio-deb.py
+	python3 files.py
+	python3 files-frontend.py
+	python3 files-deb.py
 
 init-lxd:
 	@echo "init lxd here..."
