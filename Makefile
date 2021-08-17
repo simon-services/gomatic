@@ -54,6 +54,11 @@ files:
 testing:
 	python3 testing-deb.py
 
+services:
+	python3 mbedtls.py
+	python3	nng.py
+	python3 services
+
 init-lxd:
 	@echo "init lxd here..."
 
