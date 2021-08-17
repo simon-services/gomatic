@@ -12,4 +12,4 @@ make gocd
 # install golang
 make golang
 # import gomatic pipelines into gocd
-make init
+make testing
