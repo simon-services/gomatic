@@ -3,7 +3,7 @@ all: init
 
 os-init:
 	apt update
-	apt install -y wget gnupg2 curl procps unzip python3 python3-pip rsync dpkg 
+	apt install -y wget gnupg2 curl procps unzip python3 python3-pip rsync dpkg cmake ninja-build meson
 	echo "deb https://download.gocd.org /" | tee /etc/apt/sources.list.d/gocd.list
 	curl https://download.gocd.org/GOCD-GPG-KEY.asc | apt-key add -
 	apt update
