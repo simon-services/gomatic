@@ -22,6 +22,7 @@ job_build.add_task(ExecTask(['bash','-c','mkdir -p nng/libs && cp -rf include nn
 job_build.add_task(ExecTask(['bash','-c','cp -f build/libnng.a nng/libs/']))
 job_build.add_task(ExecTask(['bash','-c','tar cfvz nng.tar.gz nng && rm -rf nng']))
 job_build.ensure_artifacts({
-    Artifact.get_test_artifact("nng.tar.gz","pkg")
+    Artifact.get_test_artifact("nng.tar.gz","pkg"),
+    Artifact.get_test_artifact("build/src/tools/nngcat/nngcat","tools")
 })
 configurator.save_updated_config()

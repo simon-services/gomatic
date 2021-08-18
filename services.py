@@ -34,7 +34,8 @@ job_build.add_task(ExecTask(['bash','-c','cp -rf nng/libs/* libs/']))
 job_build.add_task(ExecTask(['bash','-c','meson build && cd build && ninja']))
 
 job_build.ensure_artifacts({
-    Artifact.get_test_artifact('build/reqrep','exec')
+    Artifact.get_test_artifact('build/req','services'),
+    Artifact.get_test_artifact('build/rep','services')
 })
 
 configurator.save_updated_config()
